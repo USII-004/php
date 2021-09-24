@@ -23,16 +23,16 @@ Amount Payable = Principal + simpleInterest */
 
  loan = '$loan'
  simpleInterest = '$simpleInterest';
- Principal = '$principal';
- Time = '$time';
- Amount = '$amount';
+ Principal = $_POST ['$principal'];
+ Time = $_POST ['$time'];
+ Amount = $_POST ['$amount'];
 
  if ('$loan' >= 5000 && '$loan' <= 9999) {
 
      function loans('$principal','$time'){
          '$simpleInterest' = '$principal' * 2.5 * '$time' / (100 * 12) ;
 
-         echo return '$simpleInterest';
+          return '$simpleInterest';
      };
 
     };
@@ -42,7 +42,7 @@ Amount Payable = Principal + simpleInterest */
             function loans('$principal','$time'){
                 '$simpleInterest' = '$principal' * 3.5 * '$time' / (100 * 12) ;
 
-               echo return '$simpleInterest';
+               return '$simpleInterest';
 
          };
 
@@ -53,7 +53,7 @@ Amount Payable = Principal + simpleInterest */
         function loans('$principal','$time'){
             '$simpleInterest' = '$principal' * 4 * '$time' / (100 * 12) ;
 
-            echo return '$simpleInterest';
+             return '$simpleInterest';
 
 
      };
@@ -65,7 +65,7 @@ Amount Payable = Principal + simpleInterest */
         function loans('$principal','$time'){
             '$simpleInterest' = '$principal' * 6 * '$time' / (100 * 12) ;
 
-            echo return '$simpleInterest';
+             return '$simpleInterest';
 
      };
 
@@ -75,7 +75,7 @@ Amount Payable = Principal + simpleInterest */
 
  function cash('$principal', '$simpleInterest'){
 
-     echo '$amount' = '$principal' + '$simpleInterest';
+      '$amount' = '$principal' + '$simpleInterest';
 
      return '$amount';
 

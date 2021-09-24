@@ -21,15 +21,15 @@ Amount Payable = Principal + simpleInterest */
 
  <?php
 
- loan = '$loan'
- simpleInterest = '$simpleInterest';
- Principal = $_POST ['$principal'];
- Time = $_POST ['$time'];
- Amount = $_POST ['$amount'];
+ $loan=$_POST['$loan'];
+ $simpleInterest=$_POST['$simpleInterest'];
+ $principal=$_POST['$principal'];
+ $time=$_POST['$time'];
+ $amount=$_POST['$amount'];
 
  if ('$loan' >= 5000 && '$loan' <= 9999) {
 
-     function loans('$principal','$time'){
+     function loans('$principal', '$time'){
          '$simpleInterest' = '$principal' * 2.5 * '$time' / (100 * 12) ;
 
           return '$simpleInterest';

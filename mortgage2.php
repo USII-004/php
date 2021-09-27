@@ -18,60 +18,75 @@ Amount Payable = Principal + simpleInterest
 
  <?php
 
-$simpleInterest= $POST['Simpleinterest'];
 $principal= $_POST['principal'];
-$time= $_POST['time'];
+$duration= $_POST['duration'];
 
-switch($simpleInterest){
+// this is how you call a variable that will get values from the user. we use use the post because our form method is post also the name we used in the array above must correspond to our form input name, in our case name and duration respectively. 
 
-    case "($principal >= 5000 && $principal <= 9999)";
-    
-    function loan1($principal, $time){
+public function rate($amount) {
+    if ($amount >= 5000 && $amount <= 9999) {
+        return 2.5;
+    } elseif ($amount >= 10000 && $amount <= 19999) {
+        return 3.5;
+    } elseif ($amount >= 20000 && $amount <= 49999) {
+        return 4;
+    } elseif ($amount >= 50000) {
+        return 6;
+    } else {
+        return 0;
+    }
+}
 
-        return $simpleInterest = $principal * 2.5 * $time / (100 * 12) ;
+$interestRate= rate($principal);
 
-    };
+// I created a differernt function to assign a rate this way my code is way smaller. notice that i used the rate function in thevariable inteerestRate  
 
-     echo loan1($principal, $time);
+public function simpleInterest($principal, $interestRate, $duration) {
+    return ($principal * $interestRate * $duration) / (100 * 12);
+}
 
-     break;
+// A different function to calculate the simple interest
 
+$mortgageLoan = simpleInterest($principal, $interestRate, $duration);
 
-     case "($principal>=10000 && $principal<=19999)";
-    
-    function loan2($principal, $time){
+// The variable mortgageLoan now calculate the simple Interest using the values gotten from the user.
 
-        return $simpleInterest = $principal * 3.5 * $time / (100 * 12) ;
+$amountPayable = $principal + $mortgageLoan;
 
-    };
+// The variable a mount payable gives the total amount the usere is expected to pay 
+?>
 
-     echo loan2($principal, $time);
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Mortgage Loan Calculator</title>
+</head>
+<body>
+<!-- since we will be getting values from the user we will use a form for that. the form action will be that it should be processed on the same page, and we use the post method so the values will not be visible in the url      -->
+    <form action="mortgage2.php" method="post">
+        <div>
+            <label for="principal">Please Enter Principal Amount :</label> <br>
+            <input type="number" id="principal" name="principal">
+        </div>
+<!-- notice that i use the same name for my Id, Name and label i.e Principal. this is to link the label and input together. -->
+        <div>
+            <label for="duration">Please Enter duration in years :</label> <br>
+            <input type="number" id="duration" name="duration">
+        </div>
 
-     break;
+        <div>
+            <button type="submit" name="submit">Calculate</button>
+        </div>
+    </form>
 
-     case "($principal>=20000 && $principal<=49999)";
-    
-    function loan3($principal, $time){
-
-        return $simpleInterest = $principal * 4 * $time / (100 * 12) ;
-
-    };
-
-     echo loan3($principal, $time);
-
-     break;
-
-     case "($principal>=50000)";
-    
-    function loan4($principal, $time){
-
-        return $simpleInterest = $principal * 6 * $time / (100 * 12) ;
-
-    };
-
-     echo loan4($principal, $time);
-
-     break;
-
-
-   };
+    <?php
+    echo "You took a principal loan of #$principal<br>\n";
+    echo "This loan will last for a duration of $duration year(s)<br>\n";
+    echo "The interest rate for this principal loan and duration is %$interestRate<br>\n";
+    echo "The simple interest on this principal amount is #$mortgageLoan<br>\n";
+    echo "You are required to pay #$amountPayable on repayment of your loan.<br>\n";
+    ?>
+</body>
+</html>
